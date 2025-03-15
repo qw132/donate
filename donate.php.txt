@@ -1,0 +1,16 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $wallet = htmlspecialchars($_POST['wallet']);
+    $amount = htmlspecialchars($_POST['amount']);
+    $to = "hamohosny155@gmail.com";
+    $subject = "تبرع جديد لفلسطين";
+    $message = "رقم المحفظة: $wallet\nالمبلغ: $amount جنيه";
+    $headers = "From: donation@palestine.com\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+    if (mail($to, $subject, $message, $headers)) {
+        echo "<script>alert('تم إرسال التبرع بنجاح!'); window.location.href='index.html';</script>";
+    } else {
+        echo "<script>alert('حدث خطأ أثناء إرسال التبرع!'); window.location.href='index.html';</script>";
+    }
+}
